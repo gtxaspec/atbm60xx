@@ -184,7 +184,9 @@ install: modules
 clean: hal_clean
 	rm -rf hal_apollo/*.o
 	rm -rf hal_apollo/*.ko
+	rm -rf hal_apollo/modules.order
 	rm -rf modules.* Module.*
+	rm -rf .tmp_versions/
 
 hal_clean:
 	rm -rf hal_apollo/*.ko
@@ -192,7 +194,9 @@ hal_clean:
 	rm -rf hal_apollo/*.mod.c
 	rm -rf hal_apollo/*.cmd
 	rm -rf hal_apollo/.*.cmd
+	rm -rf hal_apollo/modules.order
 	rm -rf hal_apollo/mac80211/*.cmd
 	rm -rf hal_apollo/mac80211/.*.cmd
 	rm -rf hal_apollo/mac80211/*.o
 	rm -rf driver_install/*.ko
+	rm -rf .tmp_versions/
