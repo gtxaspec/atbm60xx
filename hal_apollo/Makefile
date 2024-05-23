@@ -20,10 +20,21 @@
         -include $(shell pwd)/../include/linux/compat-2.6.h \
         -DCOMPAT_STATIC
 ##指定配置文件路径，当配置文件存在时使用配置文件中的dcxo值不使用efuse中的dcxo，配置文件中的delta_gain为修正值，如果文件不存在则直接使用efuse中的数据
-#ATBM_CONFIG_FILE="/tmp/atbm_txpwer_dcxo_cfg.txt"
+# Default values
+ATBM_CONFIG_FILE="/tmp/atbm_txpwer_dcxo_cfg.txt"
+ATBM_RATE_POWER_CONFIG_FILE="/tmp/set_rate_power.txt"
+
+# Use default value if CONFIG_ATBM_CONFIG_FILE is not set
+ifndef CONFIG_ATBM_CONFIG_FILE
+    CONFIG_ATBM_CONFIG_FILE := $(ATBM_CONFIG_FILE)
+endif
+
+# Use default value if CONFIG_ATBM_RATE_POWER_CONFIG_FILE is not set
+ifndef CONFIG_ATBM_RATE_POWER_CONFIG_FILE
+    CONFIG_ATBM_RATE_POWER_CONFIG_FILE := $(ATBM_RATE_POWER_CONFIG_FILE)
+endif
+
 ccflags-y += -DCONFIG_TXPOWER_DCXO_VALUE=\"$(CONFIG_ATBM_CONFIG_FILE)\"
-# use the deltagain value in file :"$(ATBM_CONFIG_FILE)",when file exist
-#ATBM_RATE_POWER_CONFIG_FILE="/tmp/set_rate_power.txt"
 ccflags-y += -DCONFIG_RATE_TXPOWER=\"$(CONFIG_ATBM_RATE_POWER_CONFIG_FILE)\"
 
 ifneq ($(IF1NAME),)
