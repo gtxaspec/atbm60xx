@@ -438,6 +438,20 @@ config ATBM_FW_NAME
     help
      set name for wifi module
 
+config ATBM_CONFIG_FILE
+    string "set tx dcxo config file path"
+    depends on ATBM_MENUCONFIG || ATBM_APOLLO
+    default "/tmp/atbm_txpwer_dcxo_cfg.txt"
+    help
+     set path for dcxo config file
+
+config ATBM_RATE_POWER_CONFIG_FILE
+    string "set rate power config path"
+    depends on ATBM_MENUCONFIG || ATBM_APOLLO
+    default "/tmp/set_rate_power.txt"
+    help
+     set path for rate power config
+
 config MAC80211_ATBM_RC_DEFAULT
 	string
 	default "minstrel_ht" if MAC80211_ATBM_RC_DEFAULT_MINSTREL && MAC80211_ATBM_RC_MINSTREL_HT
